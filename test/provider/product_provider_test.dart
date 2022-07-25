@@ -43,11 +43,7 @@ void main() {
     final provider = ProductProvider();
     final product = await provider.getProduct();
 
-    final Map<String, dynamic> data = {'rate': 3.9, 'count': 120};
-
-    expect(
-      product?[0].rating,
-      data,
-    );
+    expect(product?[0].rating.count, 120.0);
+    expect(product?[0].rating.rate, 3.9);
   });
 }

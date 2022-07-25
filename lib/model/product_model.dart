@@ -1,5 +1,7 @@
 // ignore_for_file: unnecessary_null_comparison
 
+import 'package:desafio_apirest/model/rating_model.dart';
+
 class ProductModel {
   late int id;
   late String title;
@@ -7,7 +9,7 @@ class ProductModel {
   late String category;
   late String description;
   late String image;
-  late Map<String, dynamic> rating;
+  late RatingModel rating;
 
   ProductModel({
     required this.id,
@@ -28,7 +30,7 @@ class ProductModel {
     category = json['category'] as String;
     description = json['description'] as String;
     image = json['image'] as String;
-    rating = json['rating'] as Map<String, dynamic>;
+    rating = RatingModel.fromJson(json['rating']);
   }
 
   Map<String, dynamic> toJson() {

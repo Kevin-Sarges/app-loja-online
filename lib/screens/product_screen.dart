@@ -82,14 +82,14 @@ class ProductScreen extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               Text(
-                'rate: 2.1',
-                style: TextStyle(fontSize: 16),
+                'rate: ${product.rating.rate}',
+                style: const TextStyle(fontSize: 16),
               ),
               Text(
-                'count: 430',
-                style: TextStyle(fontSize: 16),
+                'count: ${product.rating.count}',
+                style: const TextStyle(fontSize: 16),
               ),
             ],
           ),
