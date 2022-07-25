@@ -28,9 +28,7 @@ class ProductModel {
     category = json['category'] as String;
     description = json['description'] as String;
     image = json['image'] as String;
-    rating = Map<String, dynamic>.from(
-      (json['rating'] as Map<String, dynamic>),
-    );
+    rating = json['rating'] as Map<String, dynamic>;
   }
 
   Map<String, dynamic> toJson() {

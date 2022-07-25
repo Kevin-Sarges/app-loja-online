@@ -38,4 +38,16 @@ void main() {
       'Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday',
     );
   });
+
+  test('Deve retorna a quantidade de votos e a nota do produto', () async {
+    final provider = ProductProvider();
+    final product = await provider.getProduct();
+
+    final Map<String, dynamic> data = {'rate': 3.9, 'count': 120};
+
+    expect(
+      product?[0].rating,
+      data,
+    );
+  });
 }
