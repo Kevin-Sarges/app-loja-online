@@ -1,4 +1,4 @@
-import 'package:desafio_apirest/model/product_model.dart';
+import 'package:desafio_apirest/app/data/model/product_model.dart';
 import 'package:flutter/material.dart';
 
 class ProductScreen extends StatelessWidget {

@@ -1,6 +1,7 @@
-import 'package:desafio_apirest/model/product_model.dart';
-import 'package:desafio_apirest/provider/product_provider.dart';
-import 'package:desafio_apirest/widget/grid_home_widget.dart';
+import 'package:desafio_apirest/app/data/model/product_model.dart';
+import 'package:desafio_apirest/app/data/services/dio_client.dart';
+import 'package:desafio_apirest/app/presenter/widget/grid_home_widget.dart';
+import 'package:desafio_apirest/app/data/services/product_service.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -11,7 +12,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late ProductProvider provider = ProductProvider();
+  final provider = ProductProvider(DioClient());
 
   @override
   Widget build(BuildContext context) {
