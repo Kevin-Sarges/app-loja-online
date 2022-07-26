@@ -15,99 +15,101 @@ class ProductScreen extends StatelessWidget {
         backgroundColor: Colors.red,
         centerTitle: true,
       ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 15,
-        ),
-        children: [
-          Image.network(
-            product.image,
-            fit: BoxFit.contain,
-            width: 200,
-            height: 400,
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 15,
           ),
-          _sizedHeight,
-          Text(
-            'Price: \$${product.price}',
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+          children: [
+            Image.network(
+              product.image,
+              fit: BoxFit.contain,
+              width: 200,
+              height: 400,
             ),
-          ),
-          _sizedHeight,
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Text(
-                'Category: ',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+            _sizedHeight,
+            Text(
+              'Price: \$${product.price}',
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
-              Text(
-                product.category,
-                style: const TextStyle(fontSize: 16),
-              ),
-            ],
-          ),
-          _sizedHeight,
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Description:',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                product.description,
-                style: const TextStyle(
-                  fontSize: 16,
-                ),
-              ),
-            ],
-          ),
-          _sizedHeight,
-          const Text(
-            'Rating: ',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
             ),
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'rate: ${product.rating.rate}',
-                style: const TextStyle(fontSize: 16),
-              ),
-              Text(
-                'count: ${product.rating.count}',
-                style: const TextStyle(fontSize: 16),
-              ),
-            ],
-          ),
-          _sizedHeight,
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.all(10),
-              primary: Colors.red,
+            _sizedHeight,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text(
+                  'Category: ',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  product.category,
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ],
             ),
-            child: const Text(
-              'Add Cart',
+            _sizedHeight,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Description:',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  product.description,
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+            _sizedHeight,
+            const Text(
+              'Rating: ',
               style: TextStyle(
                 fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
             ),
-          ),
-        ],
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'rate: ${product.rating.rate}',
+                  style: const TextStyle(fontSize: 16),
+                ),
+                Text(
+                  'count: ${product.rating.count}',
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ],
+            ),
+            _sizedHeight,
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.all(10),
+                primary: Colors.red,
+              ),
+              child: const Text(
+                'Add Cart',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

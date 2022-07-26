@@ -5,7 +5,8 @@ const String uri = 'https://fakestoreapi.com/products';
 final request = Uri.parse(uri);
 
 class ProductProvider {
-  final dio = Dio();
+  final Dio dio;
+  ProductProvider({required this.dio});
 
   Future<List<ProductModel>?> getProduct() async {
     final response = await dio.get(uri);
