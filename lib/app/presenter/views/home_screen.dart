@@ -1,7 +1,6 @@
-import 'package:desafio_apirest/app/data/model/product_model.dart';
-import 'package:desafio_apirest/app/data/services/dio_client.dart';
+import 'package:desafio_apirest/app/presenter/controllers/home_controller.dart';
+import 'package:desafio_apirest/app/presenter/controllers/home_state.dart';
 import 'package:desafio_apirest/app/presenter/widget/grid_home_widget.dart';
-import 'package:desafio_apirest/app/data/services/product_service.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,7 +11,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final provider = ProductProvider(DioClient());
+  final controller = HomeController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.listProduct();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,30 +33,32 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
       ),
       backgroundColor: Colors.grey[300],
-      body: FutureBuilder<List<ProductModel>?>(
-        future: provider.getProduct(),
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.waiting:
-            case ConnectionState.none:
-              return const Center(
-                child: CircularProgressIndicator(
-                  color: Colors.red,
-                  strokeWidth: 5,
-                ),
-              );
-            default:
-              if (snapshot.hasError) {
-                return const Center(child: Text('Error'));
-              } else {
-                final List<ProductModel>? data = snapshot.data;
-
-                return GridHomeWidget(
-                  context: context,
-                  product: data,
-                );
-              }
+      body: ValueListenableBuilder<HomeState>(
+        valueListenable: controller,
+        builder: (context, state, child) {
+          if (state is HomeLoading) {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: Colors.red,
+                strokeWidth: 5,
+              ),
+            );
           }
+
+          if (state is HomeError) {
+            return Center(
+              child: Text(state.message),
+            );
+          }
+
+          if (state is HomeSucess) {
+            return GridHomeWidget(
+              context: context,
+              product: state.result,
+            );
+          }
+
+          return Container();
         },
       ),
     );

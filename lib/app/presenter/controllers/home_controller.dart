@@ -4,9 +4,9 @@ import 'package:desafio_apirest/app/presenter/controllers/home_state.dart';
 import 'package:flutter/material.dart';
 
 class HomeController extends ValueNotifier<HomeState> {
-  HomeController() : super(HomeInitial());
-
   ProductProvider provider = ProductProvider(DioClient());
+
+  HomeController() : super(HomeInitial());
 
   Future<void> listProduct() async {
     value = HomeLoading();
@@ -16,7 +16,7 @@ class HomeController extends ValueNotifier<HomeState> {
 
       value = HomeSucess(result);
     } catch (e) {
-      value = HomeError('Error');
+      value = HomeError(e.toString());
     }
   }
 }

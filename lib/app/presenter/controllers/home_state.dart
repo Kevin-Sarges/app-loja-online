@@ -7,9 +7,13 @@ class HomeInitial extends HomeState {}
 class HomeLoading extends HomeState {}
 
 class HomeSucess extends HomeState {
-  HomeSucess(List<ProductModel>? result);
+  final List<ProductModel>? result;
+
+  HomeSucess(this.result);
 }
 
 class HomeError extends HomeState {
-  HomeError(String error);
+  final String message;
+
+  HomeError(this.message);
 }
