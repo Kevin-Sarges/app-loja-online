@@ -1,11 +1,6 @@
-import 'package:desafio_apirest/screens/home_screen.dart';
+import 'package:desafio_apirest/app/app_widget.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(
-    const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
-    ),
-  );
+  runApp(const MyApp());
 }
