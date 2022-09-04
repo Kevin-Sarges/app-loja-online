@@ -2,6 +2,7 @@ import 'package:desafio_apirest/app/presenter/controllers/home_controller.dart';
 import 'package:desafio_apirest/app/presenter/controllers/home_state.dart';
 import 'package:desafio_apirest/app/presenter/widget/grid_home_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -33,9 +34,9 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
       ),
       backgroundColor: Colors.grey[300],
-      body: ValueListenableBuilder<HomeState>(
-        valueListenable: controller,
-        builder: (context, state, child) {
+      body: BlocBuilder<HomeController, HomeState>(
+        bloc: controller,
+        builder: (context, state) {
           if (state is HomeLoading) {
             return const Center(
               child: CircularProgressIndicator(
