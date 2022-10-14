@@ -1,7 +1,7 @@
 import 'package:desafio_apirest/app/domain/entities/product_rating.dart';
 
 class ProductEntity {
-  final int id;
+  late final int id;
   final String title;
   final double price;
   final String category;
