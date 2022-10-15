@@ -5,12 +5,13 @@ import 'package:sqflite/sqflite.dart';
 
 class SqfliteService implements ICart {
   final nameTable = 'cart';
-  late Database db;
+  late Database _db;
 
-  Future setDatabase() async {
-    db = await openDatabase('shopping_cart', version: 1,
-        onCreate: (db, version) async {
-      await db.execute('''
+  @override
+  Future setLocalDatabase() async {
+    _db = await openDatabase('shopping_cart', version: 1,
+        onCreate: (_db, version) async {
+      await _db.execute('''
         create table $nameTable(
           ${ConstantsApp.id} integer primary key autoincrement,
           ${ConstantsApp.title} text not null,
@@ -26,14 +27,14 @@ class SqfliteService implements ICart {
 
   @override
   Future<ProductModel> addCart(ProductModel product) async {
-    product.id = await db.insert(nameTable, product.toJson());
+    product.id = await _db.insert(nameTable, product.toJson());
 
     return product;
   }
 
   @override
   Future<List<Map<String, dynamic>>> listProductCart() async {
-    final products = await db.query('cart', columns: [
+    final products = await _db.query('cart', columns: [
       ConstantsApp.title,
       ConstantsApp.price,
       ConstantsApp.image,
@@ -44,11 +45,11 @@ class SqfliteService implements ICart {
 
   @override
   Future<int> removeCart(int id) async {
-    return await db.delete(nameTable, where: 'id = ?', whereArgs: [id]);
+    return await _db.delete(nameTable, where: 'id = ?', whereArgs: [id]);
   }
 
   @override
   Future<int> cleanCart() async {
-    return await db.delete(nameTable);
+    return await _db.delete(nameTable);
   }
 }

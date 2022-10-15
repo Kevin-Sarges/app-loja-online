@@ -1,5 +1,5 @@
-import 'package:desafio_apirest/app/presenter/controllers/home_controller.dart';
-import 'package:desafio_apirest/app/presenter/controllers/home_state.dart';
+import 'package:desafio_apirest/app/presenter/controllers/home_controllers/home_controller.dart';
+import 'package:desafio_apirest/app/presenter/controllers/home_controllers/home_state.dart';
 import 'package:desafio_apirest/app/presenter/widget/grid_home_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
