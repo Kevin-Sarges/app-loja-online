@@ -18,7 +18,7 @@ class HomeController extends Cubit<HomeState> {
 
       emit(HomeSucess(result));
     } catch (e) {
-      emit(HomeError(e.toString()));
+      emit(HomeError('Erro ao lista os produtos'));
     }
   }
 }
