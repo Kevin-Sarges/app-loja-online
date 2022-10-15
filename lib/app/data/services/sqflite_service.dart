@@ -1,16 +1,9 @@
 import 'package:desafio_apirest/app/data/datasoucer/cart_interface.dart';
 import 'package:desafio_apirest/app/data/model/product_model.dart';
+import 'package:desafio_apirest/app/domain/constants/constants_app.dart';
 import 'package:sqflite/sqflite.dart';
 
 class SqfliteService implements ICart {
-  String? id;
-  String? title;
-  String? price;
-  String? category;
-  String? description;
-  String? image;
-  String? rating;
-
   final nameTable = 'cart';
   late Database db;
 
@@ -19,13 +12,13 @@ class SqfliteService implements ICart {
         onCreate: (db, version) async {
       await db.execute('''
         create table $nameTable(
-          $id integer primary key autoincrement,
-          $title text not null,
-          $price decimal not null,
-          $category text not null,
-          $description text not null,
-          $image text not null, 
-          $rating text not null,
+          ${ConstantsApp.id} integer primary key autoincrement,
+          ${ConstantsApp.title} text not null,
+          ${ConstantsApp.price} decimal not null,
+          ${ConstantsApp.category} text not null,
+          ${ConstantsApp.description} text not null,
+          ${ConstantsApp.image} text not null, 
+          ${ConstantsApp.rating} text not null,
         )
       ''');
     });
@@ -39,16 +32,14 @@ class SqfliteService implements ICart {
   }
 
   @override
-  Future<ProductModel> listProductCart(
-    List<ProductModel> productsCart,
-  ) async {
+  Future<List<Map<String, dynamic>>> listProductCart() async {
     final products = await db.query('cart', columns: [
-      title!,
-      price!,
-      image!,
+      ConstantsApp.title,
+      ConstantsApp.price,
+      ConstantsApp.image,
     ]);
 
-    return ProductModel.fromJson(products);
+    return products;
   }
 
   @override
