@@ -41,6 +41,7 @@ class _MyAppState extends State<MyApp> {
           child: Scaffold(
             body: _screens.elementAt(_selectedScreenIndex),
             bottomNavigationBar: BottomNavigationBar(
+              selectedItemColor: Colors.red,
               currentIndex: _selectedScreenIndex,
               onTap: _onScreenTapped,
               items: const [
