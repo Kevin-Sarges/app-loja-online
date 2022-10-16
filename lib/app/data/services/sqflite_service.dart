@@ -34,7 +34,7 @@ class SqfliteService implements ICart {
   }
 
   @override
-  Future<List<Map<String, dynamic>>> listProductCart() async {
+  Future<List<Map<String, dynamic>>> cartProductList() async {
     final products = await _db.query('cart', columns: [
       ConstantsApp.title,
       ConstantsApp.price,
@@ -45,8 +45,8 @@ class SqfliteService implements ICart {
   }
 
   @override
-  Future<int> removeCart(int id) async {
-    return await _db.delete(
+  Future<void> removeCart(int id) async {
+    await _db.delete(
       ConstantsApp.nameTable,
       where: 'id = ?',
       whereArgs: [id],
