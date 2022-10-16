@@ -31,7 +31,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         backgroundColor: Colors.red,
-        centerTitle: true,
       ),
       backgroundColor: Colors.grey[300],
       body: BlocBuilder<HomeController, HomeState>(

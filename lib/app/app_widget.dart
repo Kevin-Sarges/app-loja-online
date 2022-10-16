@@ -1,14 +1,62 @@
+// ignore_for_file: unused_field
+
+import 'package:desafio_apirest/app/presenter/controllers/home_controllers/home_controller.dart';
+import 'package:desafio_apirest/app/presenter/views/cart_screen.dart';
 import 'package:desafio_apirest/app/presenter/views/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  int _selectedScreenIndex = 0;
+
+  static final _screens = <Widget>[
+    const HomeScreen(),
+    const CartScreen(),
+  ];
+
+  void _onScreenTapped(int index) {
+    setState(() {
+      _selectedScreenIndex = index;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider<HomeController>(
+            create: (context) => HomeController(),
+          )
+        ],
+        child: SafeArea(
+          child: Scaffold(
+            body: _screens.elementAt(_selectedScreenIndex),
+            bottomNavigationBar: BottomNavigationBar(
+              currentIndex: _selectedScreenIndex,
+              onTap: _onScreenTapped,
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.shopping_cart),
+                  label: 'Carrinho',
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
