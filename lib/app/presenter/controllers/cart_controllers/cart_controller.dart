@@ -1,20 +1,20 @@
 import 'package:desafio_apirest/app/data/model/product_model.dart';
-import 'package:desafio_apirest/app/data/services/sqflite_service.dart';
+import 'package:desafio_apirest/app/data/services/cart/sharedpreferences_service.dart';
 import 'package:desafio_apirest/app/presenter/controllers/cart_controllers/cart_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartController extends Cubit<CartState> {
   CartController() : super(CartInitial());
 
-  final service = SqfliteService();
+  final service = SharedPreferencesServices();
 
   Future<void> cartProductList() async {
     emit(CartLoading());
 
     try {
-      final cartProduct = await service.cartProductList();
+      final cartProduct = await service.getProductListCart();
 
-      emit(CartSucess(cartProduct));
+      emit(CartSucess(cartProduct!));
     } catch (e) {
       emit(
         CartError(
@@ -24,13 +24,13 @@ class CartController extends Cubit<CartState> {
     }
   }
 
-  Future<void> addCart(ProductModel product) async {
+  void addCart(List<ProductModel> product) async {
     emit(CartLoading());
 
     try {
-      final addProduct = await service.addCart(product);
+      service.saveProductCart(product);
 
-      emit(CartAddProduct(addProduct));
+      emit(CartAddProduct());
     } catch (e) {
       emit(
         CartError('Erro ao adicionar produto no carrinho'),
@@ -38,11 +38,11 @@ class CartController extends Cubit<CartState> {
     }
   }
 
-  Future<void> deleteProductCart(int id) async {
+  void deleteProductCart(ProductModel product) async {
     emit(CartLoading());
 
     try {
-      await service.removeCart(id);
+      service.onDelete(product);
 
       emit(CartRemoveProduct());
     } catch (e) {
@@ -52,11 +52,11 @@ class CartController extends Cubit<CartState> {
     }
   }
 
-  Future<void> cleanCart() async {
+  void cleanCart() async {
     emit(CartLoading());
 
     try {
-      await service.cleanCart();
+      service.clearCart();
     } catch (e) {
       emit(
         CartError('Erro ao limpar o carrinho !!'),

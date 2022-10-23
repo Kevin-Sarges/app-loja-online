@@ -7,16 +7,12 @@ class CartInitial extends CartState {}
 class CartLoading extends CartState {}
 
 class CartSucess extends CartState {
-  List<Map<String, dynamic>> productCart;
+  List<ProductModel> productCart;
 
   CartSucess(this.productCart);
 }
 
-class CartAddProduct extends CartState {
-  ProductModel product;
-
-  CartAddProduct(this.product);
-}
+class CartAddProduct extends CartState {}
 
 class CartRemoveProduct extends CartState {}
 

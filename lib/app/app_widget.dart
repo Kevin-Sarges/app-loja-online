@@ -1,5 +1,6 @@
 // ignore_for_file: unused_field
 
+import 'package:desafio_apirest/app/presenter/controllers/cart_controllers/cart_controller.dart';
 import 'package:desafio_apirest/app/presenter/controllers/home_controllers/home_controller.dart';
 import 'package:desafio_apirest/app/presenter/views/cart_screen.dart';
 import 'package:desafio_apirest/app/presenter/views/home_screen.dart';
@@ -35,7 +36,10 @@ class _MyAppState extends State<MyApp> {
         providers: [
           BlocProvider<HomeController>(
             create: (context) => HomeController(),
-          )
+          ),
+          BlocProvider<CartController>(
+            create: (context) => CartController(),
+          ),
         ],
         child: SafeArea(
           child: Scaffold(

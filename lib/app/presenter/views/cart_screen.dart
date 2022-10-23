@@ -1,5 +1,9 @@
-import 'package:desafio_apirest/app/presenter/widget/item_cart_widget.dart';
+import 'package:desafio_apirest/app/presenter/controllers/cart_controllers/cart_controller.dart';
+import 'package:desafio_apirest/app/presenter/controllers/cart_controllers/cart_state.dart';
+import 'package:desafio_apirest/app/presenter/widget/circular_progress_widget.dart';
+import 'package:desafio_apirest/app/presenter/widget/list_cart_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -9,6 +13,14 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  final controllerCart = CartController();
+
+  @override
+  void initState() {
+    super.initState();
+    controllerCart.cartProductList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,10 +50,34 @@ class _CartScreenState extends State<CartScreen> {
         children: [
           Expanded(
             flex: 6,
-            child: ListView(
-              children: const [
-                ItemCart(),
-              ],
+            child: BlocBuilder<CartController, CartState>(
+              bloc: controllerCart,
+              builder: (context, state) {
+                if (state is CartLoading) {
+                  return const CircularProgressWidget();
+                }
+
+                if (state is CartError) {
+                  return Center(
+                    child: Text(state.error),
+                  );
+                }
+
+                if (state is CartSucess) {
+                  if (state.productCart.isEmpty) {
+                    return const Center(
+                      child: Text('Sem produtos !!'),
+                    );
+                  } else {
+                    return ListCart(
+                      product: state.productCart,
+                      context: context,
+                    );
+                  }
+                }
+
+                return Container();
+              },
             ),
           ),
           Expanded(

@@ -1,9 +1,8 @@
 import 'package:desafio_apirest/app/data/model/product_model.dart';
 
 abstract class ICart {
-  Future<void> setLocalDatabase();
-  Future<void> cartProductList();
-  Future<void> addCart(ProductModel product);
-  Future<void> removeCart(int id);
-  Future<void> cleanCart();
+  Future<void> getProductListCart();
+  void saveProductCart(List<ProductModel> products);
+  void onDelete(ProductModel product);
+  void clearCart();
 }

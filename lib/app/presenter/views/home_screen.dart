@@ -1,5 +1,6 @@
 import 'package:desafio_apirest/app/presenter/controllers/home_controllers/home_controller.dart';
 import 'package:desafio_apirest/app/presenter/controllers/home_controllers/home_state.dart';
+import 'package:desafio_apirest/app/presenter/widget/circular_progress_widget.dart';
 import 'package:desafio_apirest/app/presenter/widget/grid_home_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,12 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
         bloc: controller,
         builder: (context, state) {
           if (state is HomeLoading) {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: Colors.red,
-                strokeWidth: 5,
-              ),
-            );
+            return const CircularProgressWidget();
           }
 
           if (state is HomeError) {
