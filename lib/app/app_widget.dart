@@ -34,11 +34,11 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: MultiBlocProvider(
         providers: [
-          BlocProvider<HomeController>(
-            create: (context) => HomeController(),
-          ),
           BlocProvider<CartController>(
             create: (context) => CartController(),
+          ),
+          BlocProvider<HomeController>(
+            create: (context) => HomeController(),
           ),
         ],
         child: SafeArea(

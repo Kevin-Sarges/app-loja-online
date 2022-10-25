@@ -1,12 +1,12 @@
 import 'package:desafio_apirest/app/data/model/product_model.dart';
-import 'package:desafio_apirest/app/data/services/cart/sharedpreferences_service.dart';
+import 'package:desafio_apirest/app/data/services/cart/sqflite_service.dart';
 import 'package:desafio_apirest/app/presenter/controllers/cart_controllers/cart_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartController extends Cubit<CartState> {
   CartController() : super(CartInitial());
 
-  final service = SharedPreferencesServices();
+  final service = SqfliteService();
 
   Future<void> cartProductList() async {
     emit(CartLoading());
@@ -24,7 +24,7 @@ class CartController extends Cubit<CartState> {
     }
   }
 
-  void addCart(List<ProductModel> product) async {
+  Future<void> addCart(ProductModel product) async {
     emit(CartLoading());
 
     try {
@@ -42,7 +42,7 @@ class CartController extends Cubit<CartState> {
     emit(CartLoading());
 
     try {
-      service.onDelete(product);
+      service.onDelete(product.id);
 
       emit(CartRemoveProduct());
     } catch (e) {

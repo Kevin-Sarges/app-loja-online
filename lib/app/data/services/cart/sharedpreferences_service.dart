@@ -27,41 +27,30 @@ class SharedPreferencesServices implements ICart {
   }
 
   @override
-  void saveProductCart(List<ProductModel> products) {
+  Future<void> saveProductCart(ProductModel products) async {
     final jsonString = json.encode(products);
 
-    // ProductModel newProduct = ProductModel(
-    //   id: productModel!.id,
-    //   title: productModel!.title,
-    //   price: productModel!.price,
-    //   category: productModel!.category,
-    //   description: productModel!.description,
-    //   image: productModel!.image,
-    //   rating: productModel!.rating,
-    // );
-
-    // priceTotal = newProduct.price + priceTotal;
     sharedPreferences?.setString(ConstantsApp.nameDatabase, jsonString);
     storage.setItem(ConstantsApp.nameDatabase, jsonString);
   }
 
   @override
-  void onDelete(ProductModel product) {
+  Future<void> onDelete(int id) async {
+    ProductModel? product;
+
     productModel = product;
-    indexProductDeleted = productsCart.indexOf(product);
+    indexProductDeleted = productsCart.indexOf(product!);
 
     priceTotal = priceTotal - product.price;
 
     productsCart.remove(product);
-    saveProductCart(productsCart);
   }
 
   @override
-  void clearCart() async {
+  Future<void> clearCart() async {
     await storage.clear();
 
     productsCart.clear();
     productsCart = storage.getItem('items') ?? [];
-    saveProductCart(productsCart);
   }
 }

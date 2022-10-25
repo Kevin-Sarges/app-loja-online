@@ -1,8 +1,9 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:desafio_apirest/app/data/model/product_model.dart';
-import 'package:desafio_apirest/app/presenter/controllers/cart_controllers/cart_controller.dart';
+import 'package:desafio_apirest/app/data/services/cart/sqflite_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class ListCart extends StatelessWidget {
@@ -15,7 +16,7 @@ class ListCart extends StatelessWidget {
   List<ProductModel>? product;
   BuildContext context;
 
-  final controller = CartController();
+  final controllerService = GetIt.I.get<SqfliteService>();
 
   @override
   Widget build(BuildContext context) {
@@ -64,9 +65,7 @@ class ListCart extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {
-                  controller.deleteProductCart(
-                    product![index],
-                  );
+                  controllerService.onDelete(product![index].id);
                 },
                 icon: const Icon(
                   Icons.delete,
