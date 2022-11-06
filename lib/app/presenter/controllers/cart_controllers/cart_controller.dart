@@ -1,6 +1,5 @@
 import 'package:desafio_apirest/app/data/datasoucer/cart_interface.dart';
 import 'package:desafio_apirest/app/data/model/cart_model.dart';
-import 'package:desafio_apirest/app/data/model/product_model.dart';
 import 'package:desafio_apirest/app/presenter/controllers/cart_controllers/cart_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,7 +13,9 @@ class CartController extends Cubit<CartState> {
 
     try {
       final cartProduct = await service.getProductListCart();
+      final priceTotal = await service.sumPrice();
 
+      emit(CartPriceTotal(priceTotal));
       emit(CartSucess(cartProduct));
     } catch (e) {
       emit(
@@ -39,7 +40,7 @@ class CartController extends Cubit<CartState> {
     }
   }
 
-  void deleteProductCart(ProductModel product) async {
+  void deleteProductCart(CartModel product) async {
     emit(CartLoading());
 
     try {

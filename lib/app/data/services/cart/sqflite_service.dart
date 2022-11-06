@@ -54,4 +54,17 @@ class SqfliteService implements IDataBaseLocal {
 
     productCart.clear();
   }
+
+  @override
+  Future<double> sumPrice() async {
+    db = await SqfliteHelpers.instance.database;
+
+    List<Map<String, dynamic>> total = await db.rawQuery(
+      'SELECT SUM(${ConstantsApp.price}) FROM ${ConstantsApp.nameTable}',
+    );
+
+    double priceTotal = total[0]['SUM(${ConstantsApp.price})'];
+
+    return priceTotal;
+  }
 }

@@ -39,7 +39,6 @@ class SharedPreferencesServices implements IDataBaseLocal {
   @override
   Future<void> onDelete(int id) async {
     CartModel? product;
-
     productCart = product;
     indexProductDeleted = productsCart.indexOf(product!);
 
@@ -54,5 +53,10 @@ class SharedPreferencesServices implements IDataBaseLocal {
 
     productsCart.clear();
     productsCart = storage.getItem('items') ?? [];
+  }
+
+  @override
+  Future<double> sumPrice() {
+    throw UnimplementedError();
   }
 }
