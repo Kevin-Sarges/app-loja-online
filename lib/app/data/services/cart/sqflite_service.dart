@@ -1,42 +1,36 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+
+import 'package:desafio_apirest/app/data/model/cart_model.dart';
 import 'package:sqflite/sqlite_api.dart';
 
 import 'package:desafio_apirest/app/data/datasoucer/cart_interface.dart';
-import 'package:desafio_apirest/app/data/model/product_model.dart';
 import 'package:desafio_apirest/app/domain/constants/constants_app.dart';
 import 'package:desafio_apirest/app/external/sqflite_helpers/helpers.dart';
 
-class SqfliteService implements ICart {
-  Database db;
+class SqfliteService implements IDataBaseLocal {
+  late Database db;
 
-  SqfliteService({required this.db});
+  List<CartModel> product = [];
 
-  List<ProductModel> product = [];
-
-  List<ProductModel> get productCart => product;
+  List<CartModel> get productCart => product;
 
   @override
-  Future<List<ProductModel>?> getProductListCart() async {
+  Future<List<CartModel>> getProductListCart() async {
     db = await SqfliteHelpers.instance.database;
 
-    List<Map<String, dynamic>> maps =
-        await db.query(ConstantsApp.nameTable, columns: [
-      ConstantsApp.image,
-      ConstantsApp.title,
-      ConstantsApp.price,
-    ]);
+    List<Map<String, dynamic>> maps = await db.query(ConstantsApp.nameTable);
 
     if (maps.isNotEmpty) {
-      product = ProductModel.fromJsonList(maps)!;
+      product = CartModel.fromJsonList(maps)!;
     }
 
     return product;
   }
 
   @override
-  Future<ProductModel> saveProductCart(ProductModel product) async {
+  Future<CartModel> saveProductCart(CartModel product) async {
     db = await SqfliteHelpers.instance.database;
-    product.id = await db.insert(ConstantsApp.nameTable, product.toJson());
+    await db.insert(ConstantsApp.nameTable, product.toMap());
 
     return product;
   }

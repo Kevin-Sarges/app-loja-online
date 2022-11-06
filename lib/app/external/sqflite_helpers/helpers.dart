@@ -17,8 +17,10 @@ class SqfliteHelpers {
   }
 
   _initDatabase() async {
+    String path = join(await getDatabasesPath(), ConstantsApp.nameDatabase);
+
     return await openDatabase(
-      join(await getDatabasesPath(), ConstantsApp.nameDatabase),
+      path,
       version: 1,
       onCreate: _onCreate,
     );

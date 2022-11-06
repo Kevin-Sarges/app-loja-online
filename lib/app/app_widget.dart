@@ -1,11 +1,8 @@
 // ignore_for_file: unused_field
 
-import 'package:desafio_apirest/app/presenter/controllers/cart_controllers/cart_controller.dart';
-import 'package:desafio_apirest/app/presenter/controllers/home_controllers/home_controller.dart';
 import 'package:desafio_apirest/app/presenter/views/cart_screen.dart';
 import 'package:desafio_apirest/app/presenter/views/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -32,33 +29,23 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MultiBlocProvider(
-        providers: [
-          BlocProvider<CartController>(
-            create: (context) => CartController(),
-          ),
-          BlocProvider<HomeController>(
-            create: (context) => HomeController(),
-          ),
-        ],
-        child: SafeArea(
-          child: Scaffold(
-            body: _screens.elementAt(_selectedScreenIndex),
-            bottomNavigationBar: BottomNavigationBar(
-              selectedItemColor: Colors.red,
-              currentIndex: _selectedScreenIndex,
-              onTap: _onScreenTapped,
-              items: const [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.shopping_cart),
-                  label: 'Carrinho',
-                ),
-              ],
-            ),
+      home: SafeArea(
+        child: Scaffold(
+          body: _screens.elementAt(_selectedScreenIndex),
+          bottomNavigationBar: BottomNavigationBar(
+            selectedItemColor: Colors.red,
+            currentIndex: _selectedScreenIndex,
+            onTap: _onScreenTapped,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_cart),
+                label: 'Carrinho',
+              ),
+            ],
           ),
         ),
       ),

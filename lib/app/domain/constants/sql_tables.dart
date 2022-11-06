@@ -6,7 +6,7 @@ class SqlTables {
       ${ConstantsApp.id} INTEGER PRIMARY KEY AUTOINCREMENT,
       ${ConstantsApp.image} TEXT NOT NULL,
       ${ConstantsApp.title} TEXT NOT NULL,
-      ${ConstantsApp.price} REAL NOT NULL
+      ${ConstantsApp.price} TEXT NOT NULL,
     )
   ''';
 }

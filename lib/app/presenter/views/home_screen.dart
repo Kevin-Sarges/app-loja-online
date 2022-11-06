@@ -4,6 +4,7 @@ import 'package:desafio_apirest/app/presenter/widget/circular_progress_widget.da
 import 'package:desafio_apirest/app/presenter/widget/grid_home_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final controller = HomeController();
+  final controller = GetIt.I.get<HomeController>();
 
   @override
   void initState() {

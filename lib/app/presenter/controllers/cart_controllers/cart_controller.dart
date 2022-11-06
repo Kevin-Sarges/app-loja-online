@@ -1,12 +1,13 @@
+import 'package:desafio_apirest/app/data/datasoucer/cart_interface.dart';
+import 'package:desafio_apirest/app/data/model/cart_model.dart';
 import 'package:desafio_apirest/app/data/model/product_model.dart';
-import 'package:desafio_apirest/app/data/services/cart/sqflite_service.dart';
 import 'package:desafio_apirest/app/presenter/controllers/cart_controllers/cart_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartController extends Cubit<CartState> {
-  CartController() : super(CartInitial());
+  CartController(this.service) : super(CartInitial());
 
-  final service = SqfliteService();
+  final IDataBaseLocal service;
 
   Future<void> cartProductList() async {
     emit(CartLoading());
@@ -14,7 +15,7 @@ class CartController extends Cubit<CartState> {
     try {
       final cartProduct = await service.getProductListCart();
 
-      emit(CartSucess(cartProduct!));
+      emit(CartSucess(cartProduct));
     } catch (e) {
       emit(
         CartError(
@@ -24,7 +25,7 @@ class CartController extends Cubit<CartState> {
     }
   }
 
-  Future<void> addCart(ProductModel product) async {
+  Future<void> addCart(CartModel product) async {
     emit(CartLoading());
 
     try {

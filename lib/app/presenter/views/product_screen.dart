@@ -1,5 +1,6 @@
+import 'package:desafio_apirest/app/data/datasoucer/cart_interface.dart';
+import 'package:desafio_apirest/app/data/model/cart_model.dart';
 import 'package:desafio_apirest/app/data/model/product_model.dart';
-import 'package:desafio_apirest/app/data/services/cart/sqflite_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -8,7 +9,7 @@ class ProductScreen extends StatelessWidget {
 
   final ProductModel product;
   final SizedBox _sizedHeight = const SizedBox(height: 20);
-  final cartController = GetIt.I.get<SqfliteService>();
+  final cartController = GetIt.I.get<IDataBaseLocal>();
 
   @override
   Widget build(BuildContext context) {
@@ -99,8 +100,15 @@ class ProductScreen extends StatelessWidget {
             ),
             _sizedHeight,
             ElevatedButton(
-              onPressed: () async {
-                await cartController.saveProductCart(product);
+              onPressed: () {
+                cartController.saveProductCart(
+                  CartModel(
+                    id: product.id,
+                    title: product.title,
+                    price: product.price,
+                    image: product.image,
+                  ),
+                );
               },
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.all(10),

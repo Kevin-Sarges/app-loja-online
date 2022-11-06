@@ -4,6 +4,7 @@ import 'package:desafio_apirest/app/presenter/widget/circular_progress_widget.da
 import 'package:desafio_apirest/app/presenter/widget/list_cart_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  final controllerCart = CartController();
+  final controllerCart = GetIt.I.get<CartController>();
 
   @override
   void initState() {

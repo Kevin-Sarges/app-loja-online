@@ -1,4 +1,4 @@
-import 'package:desafio_apirest/app/data/model/product_model.dart';
+import 'package:desafio_apirest/app/data/model/cart_model.dart';
 
 abstract class CartState {}
 
@@ -7,7 +7,7 @@ class CartInitial extends CartState {}
 class CartLoading extends CartState {}
 
 class CartSucess extends CartState {
-  List<ProductModel> productCart;
+  List<CartModel> productCart;
 
   CartSucess(this.productCart);
 }

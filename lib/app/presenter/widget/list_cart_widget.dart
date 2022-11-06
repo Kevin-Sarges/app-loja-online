@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:desafio_apirest/app/data/model/product_model.dart';
+import 'package:desafio_apirest/app/data/model/cart_model.dart';
 import 'package:desafio_apirest/app/data/services/cart/sqflite_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -13,7 +13,7 @@ class ListCart extends StatelessWidget {
     required this.context,
   }) : super(key: key);
 
-  List<ProductModel>? product;
+  List<CartModel>? product;
   BuildContext context;
 
   final controllerService = GetIt.I.get<SqfliteService>();
