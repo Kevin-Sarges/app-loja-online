@@ -8,14 +8,12 @@ class SqfliteInject {
   static void init() {
     final getIt = GetIt.instance;
 
-    getIt.registerFactory(() => HomeController());
-
     getIt.registerSingleton<IDataBaseLocal>(
       SqfliteService(),
     );
 
-    getIt.registerFactory(
-      () => CartController(getIt()),
-    );
+    getIt.registerFactory<HomeController>(() => HomeController());
+
+    getIt.registerFactory<CartController>(() => CartController(getIt()));
   }
 }

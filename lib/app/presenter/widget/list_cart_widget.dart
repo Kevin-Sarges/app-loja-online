@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:desafio_apirest/app/data/datasoucer/cart_interface.dart';
 import 'package:desafio_apirest/app/data/model/cart_model.dart';
-import 'package:desafio_apirest/app/data/services/cart/sqflite_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -16,7 +16,7 @@ class ListCart extends StatelessWidget {
   List<CartModel>? product;
   BuildContext context;
 
-  final controllerService = GetIt.I.get<SqfliteService>();
+  final controllerService = GetIt.I.get<IDataBaseLocal>();
 
   @override
   Widget build(BuildContext context) {
