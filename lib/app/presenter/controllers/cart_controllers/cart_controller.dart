@@ -13,9 +13,7 @@ class CartController extends Cubit<CartState> {
 
     try {
       final cartProduct = await service.getProductListCart();
-      final priceTotal = await service.sumPrice();
 
-      emit(CartPriceTotal(priceTotal));
       emit(CartSucess(cartProduct));
     } catch (e) {
       emit(
