@@ -81,9 +81,11 @@ class _CartScreenState extends State<CartScreen> {
                           return ListCart(
                             product: state.productCart[index],
                             context: context,
-                            onDelete: () => controllerCart.deleteProductCart(
-                              state.productCart[index],
-                            ),
+                            onDelete: () => state.productCart.length >= 2
+                                ? controllerCart.deleteProductCart(
+                                    state.productCart[index],
+                                  )
+                                : controllerCart.cleanCart(),
                           );
                         }),
                   ),

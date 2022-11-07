@@ -18,17 +18,12 @@ class CartController extends Cubit<CartState> {
       emit(CartSucess(cartProduct, priceTotal));
     } catch (e) {
       emit(
-        CartError(
-          e.toString(),
-          // 'erro ao lista produtos do carrinho !! ',
-        ),
+        CartError('erro ao lista produtos do carrinho !!'),
       );
     }
   }
 
   Future<void> addCart(CartModel product) async {
-    emit(CartLoading());
-
     try {
       service.saveProductCart(product);
 
@@ -53,10 +48,10 @@ class CartController extends Cubit<CartState> {
   }
 
   void cleanCart() async {
-    emit(CartLoading());
-
     try {
-      service.clearCart();
+      await service.clearCart();
+
+      await cartProductList();
     } catch (e) {
       emit(
         CartError('Erro ao limpar o carrinho !!'),

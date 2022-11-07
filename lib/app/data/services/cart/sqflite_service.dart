@@ -41,8 +41,8 @@ class SqfliteService implements IDataBaseLocal {
 
     await db.delete(
       ConstantsApp.nameTable,
-      where: '${ConstantsApp.id} = $id',
-      // whereArgs: [id],
+      where: '${ConstantsApp.id} = ?',
+      whereArgs: [id],
     );
   }
 
