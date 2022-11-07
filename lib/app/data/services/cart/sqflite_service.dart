@@ -41,8 +41,8 @@ class SqfliteService implements IDataBaseLocal {
 
     await db.delete(
       ConstantsApp.nameTable,
-      where: '${ConstantsApp.id} = ?',
-      whereArgs: [id],
+      where: '${ConstantsApp.id} = $id',
+      // whereArgs: [id],
     );
   }
 
@@ -63,7 +63,7 @@ class SqfliteService implements IDataBaseLocal {
       'SELECT SUM(${ConstantsApp.price}) FROM ${ConstantsApp.nameTable}',
     );
 
-    double priceTotal = total[0]['SUM(${ConstantsApp.price})'];
+    double priceTotal = total[0]['SUM(${ConstantsApp.price})'] ?? 0.0;
 
     return priceTotal;
   }

@@ -11,81 +11,76 @@ class ListCart extends StatelessWidget {
     Key? key,
     required this.product,
     required this.context,
+    required this.onDelete,
   }) : super(key: key);
 
-  List<CartModel>? product;
+  CartModel product;
   BuildContext context;
+  VoidCallback onDelete;
 
   final controllerService = GetIt.I.get<IDataBaseLocal>();
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: product?.length,
-      itemBuilder: (_, index) {
-        return Container(
-          margin: const EdgeInsets.symmetric(
-            horizontal: 10,
-            vertical: 5,
+    return Container(
+      margin: const EdgeInsets.symmetric(
+        horizontal: 10,
+        vertical: 5,
+      ),
+      height: 100,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 5,
+              horizontal: 10,
+            ),
+            child: FadeInImage.memoryNetwork(
+              width: 70,
+              placeholder: kTransparentImage,
+              image: product.image,
+              fit: BoxFit.cover,
+            ),
           ),
-          height: 100,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(8),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  product.title,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  softWrap: false,
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                Text(
+                  '\$ ${product.price}',
+                  style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 5,
-                  horizontal: 10,
-                ),
-                child: FadeInImage.memoryNetwork(
-                  width: 70,
-                  placeholder: kTransparentImage,
-                  image: product![index].image,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      product![index].title,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      softWrap: false,
-                      style: const TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                    Text(
-                      '\$ ${product![index].price}',
-                      style: const TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              IconButton(
-                onPressed: () {
-                  controllerService.onDelete(product![index].id);
-                },
-                icon: const Icon(
-                  Icons.delete,
-                  color: Colors.red,
-                  size: 35,
-                ),
-              ),
-            ],
+          IconButton(
+            onPressed: onDelete,
+            icon: const Icon(
+              Icons.delete,
+              color: Colors.red,
+              size: 35,
+            ),
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 }

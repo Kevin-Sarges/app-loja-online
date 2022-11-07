@@ -75,10 +75,17 @@ class _CartScreenState extends State<CartScreen> {
                 children: [
                   Expanded(
                     flex: 6,
-                    child: ListCart(
-                      product: state.productCart,
-                      context: context,
-                    ),
+                    child: ListView.builder(
+                        itemCount: state.productCart.length,
+                        itemBuilder: (context, index) {
+                          return ListCart(
+                            product: state.productCart[index],
+                            context: context,
+                            onDelete: () => controllerCart.deleteProductCart(
+                              state.productCart[index],
+                            ),
+                          );
+                        }),
                   ),
                   Expanded(
                     flex: 1,

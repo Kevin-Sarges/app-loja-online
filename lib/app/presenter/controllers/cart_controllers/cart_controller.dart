@@ -40,13 +40,11 @@ class CartController extends Cubit<CartState> {
     }
   }
 
-  void deleteProductCart(CartModel product) async {
-    emit(CartLoading());
-
+  Future<void> deleteProductCart(CartModel product) async {
     try {
-      service.onDelete(product.id);
+      await service.onDelete(product.id);
 
-      emit(CartRemoveProduct());
+      await cartProductList();
     } catch (e) {
       emit(
         CartError('Erro ao remover produto !!'),
