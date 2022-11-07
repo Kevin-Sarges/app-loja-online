@@ -96,8 +96,8 @@ class _CartScreenState extends State<CartScreen> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text(
+                            children: [
+                              const Text(
                                 'Total da compra: ',
                                 style: TextStyle(
                                   fontSize: 15,
@@ -105,8 +105,8 @@ class _CartScreenState extends State<CartScreen> {
                                 ),
                               ),
                               Text(
-                                '\$ 200',
-                                style: TextStyle(
+                                '\$ ${state.priceTotal.toStringAsFixed(2)}',
+                                style: const TextStyle(
                                   fontSize: 17,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.green,
