@@ -101,6 +101,16 @@ class ProductScreen extends StatelessWidget {
             _sizedHeight,
             ElevatedButton(
               onPressed: () {
+                final snackBar = SnackBar(
+                  content: const Text('Produto adicionado ao carrinho !!'),
+                  action: SnackBarAction(
+                    label: 'desfazer',
+                    onPressed: () {
+                      cartController.onDelete(product.id);
+                    },
+                  ),
+                );
+
                 cartController.saveProductCart(
                   CartModel(
                     id: product.id,
@@ -109,6 +119,8 @@ class ProductScreen extends StatelessWidget {
                     image: product.image,
                   ),
                 );
+
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
               },
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.all(10),
