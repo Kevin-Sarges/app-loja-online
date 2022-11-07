@@ -11,10 +11,10 @@ void main() {
   final client = IHttpClientMock();
 
   test('Pegando todos os dados da api', () async {
-    when(() => client.get(uri)).thenAnswer((_) async => json.decode(data));
+    when(() => client.get(data)).thenAnswer((_) async => json.decode(data));
 
     final provider = ProductProvider(client);
-    final products = await provider.getProduct();
+    final products = await provider.getProduct(data);
     expect(
       products?[0].title,
       'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
@@ -23,7 +23,7 @@ void main() {
 
   test('Deve retorna um link de um imagem do produto', () async {
     final provider = ProductProvider(client);
-    final product = await provider.getProduct();
+    final product = await provider.getProduct(data);
 
     expect(
       product?[0].image,
@@ -33,7 +33,7 @@ void main() {
 
   test('Deve retorna o titulo de um produto', () async {
     final provider = ProductProvider(client);
-    final product = await provider.getProduct();
+    final product = await provider.getProduct(data);
 
     expect(
       product?[0].title,
@@ -43,14 +43,14 @@ void main() {
 
   test('Deve retorna o id de um produto', () async {
     final provider = ProductProvider(client);
-    final product = await provider.getProduct();
+    final product = await provider.getProduct(data);
 
     expect(product?[0].id, 1);
   });
 
   test('Deve retorna um descrição do produto', () async {
     final provider = ProductProvider(client);
-    final product = await provider.getProduct();
+    final product = await provider.getProduct(data);
 
     expect(
       product?[0].description,
@@ -60,7 +60,7 @@ void main() {
 
   test('Deve retorna a quantidade de votos e a nota do produto', () async {
     final provider = ProductProvider(client);
-    final product = await provider.getProduct();
+    final product = await provider.getProduct(data);
 
     expect(product?[0].rating.count, 120.0);
     expect(product?[0].rating.rate, 3.9);
