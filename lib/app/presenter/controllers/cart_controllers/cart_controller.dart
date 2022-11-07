@@ -13,12 +13,14 @@ class CartController extends Cubit<CartState> {
 
     try {
       final cartProduct = await service.getProductListCart();
+      final priceTotal = await service.sumPrice();
 
-      emit(CartSucess(cartProduct));
+      emit(CartSucess(cartProduct, priceTotal));
     } catch (e) {
       emit(
         CartError(
-          'erro ao lista produtos do carrinho !!',
+          e.toString(),
+          // 'erro ao lista produtos do carrinho !! ',
         ),
       );
     }

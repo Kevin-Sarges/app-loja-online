@@ -8,8 +8,9 @@ class CartLoading extends CartState {}
 
 class CartSucess extends CartState {
   List<CartModel> productCart;
+  double priceTotal = 0.0;
 
-  CartSucess(this.productCart);
+  CartSucess(this.productCart, this.priceTotal);
 }
 
 class CartAddProduct extends CartState {}
