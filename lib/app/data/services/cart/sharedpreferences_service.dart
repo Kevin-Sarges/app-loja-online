@@ -42,8 +42,6 @@ class SharedPreferencesServices implements IDataBaseLocal {
     productCart = product;
     indexProductDeleted = productsCart.indexOf(product!);
 
-    priceTotal = priceTotal - product.price;
-
     productsCart.remove(product);
   }
 
