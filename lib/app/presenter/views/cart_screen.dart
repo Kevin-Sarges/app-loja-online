@@ -81,7 +81,7 @@ class _CartScreenState extends State<CartScreen> {
                           return ListCart(
                             product: state.productCart[index],
                             context: context,
-                            onDelete: () => state.productCart.length >= 2
+                            onDelete: () => state.productCart.length > 1
                                 ? controllerCart.deleteProductCart(
                                     state.productCart[index],
                                   )

@@ -4,7 +4,7 @@ class CartModel extends CartEntities {
   CartModel({
     required int id,
     required String title,
-    required double price,
+    required String price,
     required String image,
   }) : super(
           id: id,
@@ -17,7 +17,7 @@ class CartModel extends CartEntities {
     return CartModel(
       id: map['id'] as int,
       title: map['title'] as String,
-      price: map['price'] as double,
+      price: map['price'] as String,
       image: map['image'] as String,
     );
   }

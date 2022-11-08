@@ -3,6 +3,7 @@ import 'package:desafio_apirest/app/data/inject/sqflite_inject.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  // WidgetsFlutterBinding.ensureInitialized();
   SqfliteInject.init();
   runApp(const MyApp());
 }

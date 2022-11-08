@@ -115,7 +115,7 @@ class ProductScreen extends StatelessWidget {
                   CartModel(
                     id: product.id,
                     title: product.title,
-                    price: product.price,
+                    price: product.price.toString(),
                     image: product.image,
                   ),
                 );

@@ -18,7 +18,8 @@ class CartController extends Cubit<CartState> {
       emit(CartSucess(cartProduct, priceTotal));
     } catch (e) {
       emit(
-        CartError('erro ao lista produtos do carrinho !!'),
+        CartError(e.toString()),
+        // CartError('erro ao lista produtos do carrinho !!'),
       );
     }
   }

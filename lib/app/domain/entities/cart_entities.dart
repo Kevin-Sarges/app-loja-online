@@ -1,7 +1,7 @@
 class CartEntities {
   final int id;
   final String title;
-  final double price;
+  final String price;
   final String image;
 
   CartEntities({
