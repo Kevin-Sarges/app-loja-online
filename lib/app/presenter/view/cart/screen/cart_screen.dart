@@ -1,7 +1,7 @@
-import 'package:desafio_apirest/app/presenter/controllers/cart_controllers/cart_controller.dart';
-import 'package:desafio_apirest/app/presenter/controllers/cart_controllers/cart_state.dart';
-import 'package:desafio_apirest/app/presenter/widget/circular_progress_widget.dart';
-import 'package:desafio_apirest/app/presenter/widget/list_cart_widget.dart';
+import 'package:desafio_apirest/app/presenter/globals_widgets/circular_progress_widget.dart';
+import 'package:desafio_apirest/app/presenter/view/cart/widgets_cart/component_prouct_widget.dart';
+import 'package:desafio_apirest/app/presenter/view/cart/controller_cart/cart_controller.dart';
+import 'package:desafio_apirest/app/presenter/view/cart/controller_cart/cart_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -78,7 +78,7 @@ class _CartScreenState extends State<CartScreen> {
                     child: ListView.builder(
                         itemCount: state.productCart.length,
                         itemBuilder: (context, index) {
-                          return ListCart(
+                          return ComponentProductCart(
                             product: state.productCart[index],
                             context: context,
                             onDelete: () => state.productCart.length > 1

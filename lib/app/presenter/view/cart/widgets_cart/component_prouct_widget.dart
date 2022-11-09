@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-class ListCart extends StatelessWidget {
-  ListCart({
+class ComponentProductCart extends StatelessWidget {
+  ComponentProductCart({
     Key? key,
     required this.product,
     required this.context,

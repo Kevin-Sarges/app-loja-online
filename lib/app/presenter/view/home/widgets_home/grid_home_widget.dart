@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:desafio_apirest/app/data/model/product_model.dart';
-import 'package:desafio_apirest/app/presenter/views/product_screen.dart';
+import 'package:desafio_apirest/app/presenter/view/product/screen/product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 

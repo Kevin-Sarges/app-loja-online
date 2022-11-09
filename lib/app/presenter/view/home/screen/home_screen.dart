@@ -1,7 +1,7 @@
-import 'package:desafio_apirest/app/presenter/controllers/home_controllers/home_controller.dart';
-import 'package:desafio_apirest/app/presenter/controllers/home_controllers/home_state.dart';
-import 'package:desafio_apirest/app/presenter/widget/circular_progress_widget.dart';
-import 'package:desafio_apirest/app/presenter/widget/grid_home_widget.dart';
+import 'package:desafio_apirest/app/presenter/globals_widgets/circular_progress_widget.dart';
+import 'package:desafio_apirest/app/presenter/view/home/widgets_home/grid_home_widget.dart';
+import 'package:desafio_apirest/app/presenter/view/home/controller_home/home_controller.dart';
+import 'package:desafio_apirest/app/presenter/view/home/controller_home/home_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';

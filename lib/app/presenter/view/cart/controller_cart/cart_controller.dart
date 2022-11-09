@@ -1,6 +1,6 @@
 import 'package:desafio_apirest/app/data/datasoucer/cart_interface.dart';
 import 'package:desafio_apirest/app/data/model/cart_model.dart';
-import 'package:desafio_apirest/app/presenter/controllers/cart_controllers/cart_state.dart';
+import 'package:desafio_apirest/app/presenter/view/cart/controller_cart/cart_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartController extends Cubit<CartState> {

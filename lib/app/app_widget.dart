@@ -1,7 +1,7 @@
 // ignore_for_file: unused_field
 
-import 'package:desafio_apirest/app/presenter/views/cart_screen.dart';
-import 'package:desafio_apirest/app/presenter/views/home_screen.dart';
+import 'package:desafio_apirest/app/presenter/view/cart/screen/cart_screen.dart';
+import 'package:desafio_apirest/app/presenter/view/home/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatefulWidget {
