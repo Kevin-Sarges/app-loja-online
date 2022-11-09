@@ -2,6 +2,7 @@ import 'package:desafio_apirest/app/presenter/globals_widgets/circular_progress_
 import 'package:desafio_apirest/app/presenter/view/cart/widgets_cart/component_prouct_widget.dart';
 import 'package:desafio_apirest/app/presenter/view/cart/controller_cart/cart_controller.dart';
 import 'package:desafio_apirest/app/presenter/view/cart/controller_cart/cart_state.dart';
+import 'package:desafio_apirest/app/presenter/view/cart/widgets_cart/empty_cart_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -67,9 +68,7 @@ class _CartScreenState extends State<CartScreen> {
 
           if (state is CartSucess) {
             if (state.productCart.isEmpty) {
-              return const Center(
-                child: Text('Sem produtos no carrinho!!'),
-              );
+              return const EmptyCartWidget();
             } else {
               return Column(
                 children: [

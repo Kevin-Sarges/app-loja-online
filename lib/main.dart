@@ -3,6 +3,6 @@ import 'package:desafio_apirest/app/domain/inject/sqflite_inject.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  SqfliteInject.init();
+  InjectDependency.init();
   runApp(const MyApp());
 }
