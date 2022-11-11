@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "126600659059",
+    "project_id": "loja-online-1be31",
+    "storage_bucket": "loja-online-1be31.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126600659059:android:9f53fbee56a00c74aaaa06",
+        "android_client_info": {
+          "package_name": "com.example.desafio_apirest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "126600659059-lobpjga6jc1mq5bopgpn1dfjkn0hlr81.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDA28xXQJF94cr68aWjJMoisf9M3WVjSdE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126600659059-lobpjga6jc1mq5bopgpn1dfjkn0hlr81.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
