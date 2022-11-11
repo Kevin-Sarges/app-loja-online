@@ -1,11 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:desafio_apirest/app/data/model/cart_model.dart';
+import 'package:desafio_apirest/app/helpers/sqflite_helpers.dart';
 import 'package:sqflite/sqlite_api.dart';
-
 import 'package:desafio_apirest/app/data/datasoucer/cart_interface.dart';
 import 'package:desafio_apirest/app/domain/constants/constants_app.dart';
-import 'package:desafio_apirest/app/external/sqflite_helpers/helpers.dart';
 
 class SqfliteService implements IDataBaseLocal {
   late Database db;
