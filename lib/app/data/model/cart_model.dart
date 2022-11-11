@@ -1,4 +1,4 @@
-import 'package:desafio_apirest/app/domain/entities/cart_entities.dart';
+import 'package:desafio_apirest/app/domain/entities/cart_entity.dart';
 
 class CartModel extends CartEntities {
   CartModel({
