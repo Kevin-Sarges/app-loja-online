@@ -57,7 +57,9 @@ class _CartScreenState extends State<CartScreen> {
         bloc: controllerCart,
         builder: (context, state) {
           if (state is CartLoading) {
-            return const CircularProgressWidget();
+            return CircularProgressWidget(
+              color: Colors.red,
+            );
           }
 
           if (state is CartError) {

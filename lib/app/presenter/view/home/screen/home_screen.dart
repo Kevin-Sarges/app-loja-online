@@ -39,7 +39,9 @@ class _HomeScreenState extends State<HomeScreen> {
         bloc: controller,
         builder: (context, state) {
           if (state is HomeLoading) {
-            return const CircularProgressWidget();
+            return CircularProgressWidget(
+              color: Colors.red,
+            );
           }
 
           if (state is HomeError) {

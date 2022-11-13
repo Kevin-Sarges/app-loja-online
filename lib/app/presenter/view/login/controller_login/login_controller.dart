@@ -12,6 +12,8 @@ class LoginController extends Cubit<LoginState> {
 
     try {
       await loginImpl.signIn();
+
+      emit(LoginSucess());
     } catch (e) {
       emit(LoginError('Erro no login !!'));
     }
