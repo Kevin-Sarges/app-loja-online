@@ -1,7 +1,7 @@
-import 'package:desafio_apirest/app/presenter/globals_widgets/circular_progress_widget.dart';
-import 'package:desafio_apirest/app/presenter/view/home/widgets_home/grid_home_widget.dart';
-import 'package:desafio_apirest/app/presenter/view/home/controller_home/home_controller.dart';
-import 'package:desafio_apirest/app/presenter/view/home/controller_home/home_state.dart';
+import 'package:desafio_apirest/app/data/datasoucer/auth_interface.dart';
+import 'package:desafio_apirest/app/presenter/view/cart/screen/cart_screen.dart';
+import 'package:desafio_apirest/app/presenter/view/list_products/screen/list_products_screen.dart';
+import 'package:desafio_apirest/app/presenter/view/login/controller_login/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -14,51 +14,45 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final controller = GetIt.I.get<HomeController>();
+  int _selectedScreenIndex = 0;
+  final controllerLogin = GetIt.I.get<IAuthUser>();
 
-  @override
-  void initState() {
-    super.initState();
-    controller.listProduct();
+  static final _screens = <Widget>[
+    const ListProductsScreen(),
+    const CartScreen(),
+  ];
+
+  void _onScreenTapped(int index) {
+    setState(() {
+      _selectedScreenIndex = index;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Produtos',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
+      body: BlocProvider(
+        create: (context) => LoginController(controllerLogin),
+        child: SafeArea(
+          child: Scaffold(
+            body: _screens.elementAt(_selectedScreenIndex),
+            bottomNavigationBar: BottomNavigationBar(
+              selectedItemColor: Colors.red,
+              currentIndex: _selectedScreenIndex,
+              onTap: _onScreenTapped,
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.shopping_cart),
+                  label: 'Carrinho',
+                ),
+              ],
+            ),
           ),
         ),
-        backgroundColor: Colors.red,
-      ),
-      backgroundColor: Colors.grey[300],
-      body: BlocBuilder<HomeController, HomeState>(
-        bloc: controller,
-        builder: (context, state) {
-          if (state is HomeLoading) {
-            return CircularProgressWidget(
-              color: Colors.red,
-            );
-          }
-
-          if (state is HomeError) {
-            return Center(
-              child: Text(state.message),
-            );
-          }
-
-          if (state is HomeSucess) {
-            return GridHomeWidget(
-              context: context,
-              product: state.result,
-            );
-          }
-
-          return Container();
-        },
       ),
     );
   }

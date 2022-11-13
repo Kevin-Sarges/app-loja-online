@@ -5,8 +5,8 @@ import 'package:desafio_apirest/app/presenter/view/product/screen/product_screen
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-class GridHomeWidget extends StatelessWidget {
-  GridHomeWidget({
+class GridProductsWidget extends StatelessWidget {
+  GridProductsWidget({
     Key? key,
     required this.context,
     required this.product,
