@@ -1,6 +1,8 @@
 import 'package:desafio_apirest/app/data/datasoucer/auth_interface.dart';
-import 'package:desafio_apirest/app/presenter/view/login/widgets_login/button_login_widget.dart';
+import 'package:desafio_apirest/app/presenter/globals_widgets/circular_progress_widget.dart';
+import 'package:desafio_apirest/app/presenter/view/login/controller_login/login_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -29,36 +31,22 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          _gradient,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  'faça login para \n ter acesso aos produtos',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(height: 50),
-                ButtonLoginWidget(
-                  imageSouce: 'assets/images/search.png',
-                  typeLogin: 'Google',
-                  color: Colors.white,
-                  login: () {
-                    controllerLogin.signIn();
-                  },
-                ),
-              ],
-            ),
-          ),
-        ],
+      body: BlocBuilder(
+        builder: (context, state) {
+          if (state is LoginLoading) {
+            return CircularProgressWidget(
+              color: Colors.white,
+            );
+          }
+
+          if (state is LoginError) {
+            return Center(
+              child: Text(state.message),
+            );
+          }
+
+          return Container();
+        },
       ),
     );
   }
