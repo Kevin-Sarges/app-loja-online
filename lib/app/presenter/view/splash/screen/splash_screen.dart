@@ -1,5 +1,5 @@
-import 'package:desafio_apirest/app/presenter/view/home/screen/home_screen.dart';
 import 'package:desafio_apirest/app/data/datasoucer/auth_interface.dart';
+import 'package:desafio_apirest/app/domain/constants/routes_app.dart';
 import 'package:desafio_apirest/app/presenter/globals_widgets/circular_progress_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -31,20 +31,24 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) {
-        checkSignedIn(context);
-      },
-    );
+    Future.delayed(const Duration(seconds: 2), () {
+      checkSignedIn(context);
+    });
+
+    // WidgetsBinding.instance.addPostFrameCallback(
+    //   (_) {
+    //     checkSignedIn(context);
+    //   },
+    // );
   }
 
   void checkSignedIn(BuildContext ctx) async {
     final user = await controllerLogin.isLoggerIn();
 
     if (user != null) {
-      Navigator.pushNamed(context, '/home');
+      Navigator.pushNamed(context, RoutesApp.homeRouter);
     } else {
-      Navigator.pushNamed(context, '/login');
+      Navigator.pushNamed(context, RoutesApp.loginRouter);
     }
   }
 
@@ -64,15 +68,6 @@ class _SplashScreenState extends State<SplashScreen> {
                 fit: BoxFit.cover,
               ),
               const SizedBox(height: 50),
-              ElevatedButton(
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const HomeScreen(),
-                  ),
-                ),
-                child: const Text('jsvfajs'),
-              ),
               CircularProgressWidget(
                 color: Colors.white,
               ),
