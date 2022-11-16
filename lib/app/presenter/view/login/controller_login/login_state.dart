@@ -2,11 +2,11 @@ abstract class LoginState {}
 
 class LoginIntial extends LoginState {}
 
-class LoginLoading extends LoginState {}
+class LoginCarregando extends LoginState {}
 
-class LoginSucess extends LoginState {}
+class LoginSucesso extends LoginState {}
 
-class LoginLoginFail extends LoginState {}
+class LoginFalhou extends LoginState {}
 
 class LoginError extends LoginState {
   String message;

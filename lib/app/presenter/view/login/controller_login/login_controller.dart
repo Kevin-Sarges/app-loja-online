@@ -8,19 +8,20 @@ class LoginController extends Cubit<LoginState> {
   final IAuthUser loginImpl;
 
   Future<void> loginUser() async {
-    emit(LoginLoading());
+    emit(LoginCarregando());
 
     try {
       await loginImpl.signIn();
 
-      emit(LoginSucess());
+      emit(LoginSucesso());
     } catch (e) {
-      emit(LoginError('Erro no login !!'));
+      print('ERRO NO LOGIN: $e');
+      emit(LoginError('Erro ao fazer login !!'));
     }
   }
 
   Future<void> checkLogin() async {
-    emit(LoginLoading());
+    emit(LoginCarregando());
 
     try {
       final isLoggerIn = await loginImpl.isLoggerIn();
@@ -28,17 +29,17 @@ class LoginController extends Cubit<LoginState> {
       if (isLoggerIn != null) {
         isLoggerIn.displayName;
 
-        emit(LoginSucess());
+        emit(LoginSucesso());
       } else {
-        emit(LoginLoginFail());
+        emit(LoginFalhou());
       }
     } catch (e) {
-      emit(LoginError('Erro no login !!'));
+      emit(LoginError('Erro ao checar login !!'));
     }
   }
 
   Future<void> signOutUse() async {
-    emit(LoginLoading());
+    emit(LoginCarregando());
 
     try {
       await loginImpl.signOut();

@@ -26,12 +26,14 @@ class _ListProductsScreenState extends State<ListProductsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text(
           'Produtos',
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),
+        actions: null,
         backgroundColor: Colors.red,
       ),
       backgroundColor: Colors.grey[300],
