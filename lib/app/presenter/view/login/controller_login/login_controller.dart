@@ -15,7 +15,7 @@ class LoginController extends Cubit<LoginState> {
 
       emit(LoginSucesso());
     } catch (e) {
-      emit(LoginError('Erro ao fazer login !!'));
+      emit(LoginFalhou());
     }
   }
 
@@ -26,14 +26,12 @@ class LoginController extends Cubit<LoginState> {
       final isLoggerIn = await loginImpl.isLoggerIn();
 
       if (isLoggerIn != null) {
-        isLoggerIn.displayName;
-
         emit(LoginSucesso());
       } else {
         emit(LoginFalhou());
       }
     } catch (e) {
-      emit(LoginError('Erro ao checar login !!'));
+      emit(LoginFalhou());
     }
   }
 
@@ -43,7 +41,7 @@ class LoginController extends Cubit<LoginState> {
     try {
       await loginImpl.signOut();
     } catch (e) {
-      emit(LoginError('Erro ao tentar sair do app'));
+      emit(LoginFalhou());
     }
   }
 }

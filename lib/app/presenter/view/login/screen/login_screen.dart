@@ -51,16 +51,33 @@ class _LoginScreenState extends State<LoginScreen> {
           },
           builder: (context, state) {
             if (state is LoginCarregando) {
-              return Center(
-                child: CircularProgressWidget(
-                  color: Colors.red,
-                ),
-              );
-            }
-
-            if (state is LoginError) {
-              return Center(
-                child: Text(state.message),
+              return Stack(
+                children: [
+                  _gradient,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'faça login para \n ter acesso aos produtos',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(height: 50),
+                        Center(
+                          child: CircularProgressWidget(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               );
             }
 

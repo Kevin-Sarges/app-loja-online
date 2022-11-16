@@ -31,15 +31,15 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    Future.delayed(const Duration(seconds: 2), () {
-      checkSignedIn(context);
-    });
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        Future.delayed(
+          const Duration(seconds: 2),
+        );
 
-    // WidgetsBinding.instance.addPostFrameCallback(
-    //   (_) {
-    //     checkSignedIn(context);
-    //   },
-    // );
+        checkSignedIn(context);
+      },
+    );
   }
 
   void checkSignedIn(BuildContext ctx) async {

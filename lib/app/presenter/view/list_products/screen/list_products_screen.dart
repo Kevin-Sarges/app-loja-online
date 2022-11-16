@@ -1,3 +1,5 @@
+import 'package:desafio_apirest/app/data/datasoucer/auth_interface.dart';
+import 'package:desafio_apirest/app/domain/constants/routes_app.dart';
 import 'package:desafio_apirest/app/presenter/globals_widgets/circular_progress_widget.dart';
 import 'package:desafio_apirest/app/presenter/view/list_products/controller_list_products/list_products_controller.dart';
 import 'package:desafio_apirest/app/presenter/view/list_products/controller_list_products/list_products_state.dart';
@@ -15,6 +17,7 @@ class ListProductsScreen extends StatefulWidget {
 
 class _ListProductsScreenState extends State<ListProductsScreen> {
   final controller = GetIt.I.get<ListProductsController>();
+  final loginController = GetIt.I.get<IAuthUser>();
 
   @override
   void initState() {
@@ -33,7 +36,21 @@ class _ListProductsScreenState extends State<ListProductsScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        actions: null,
+        actions: [
+          IconButton(
+            onPressed: () {
+              loginController.signOut();
+
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                RoutesApp.loginRouter,
+                (_) => true,
+              );
+            },
+            icon: const Icon(
+              Icons.logout,
+            ),
+          ),
+        ],
         backgroundColor: Colors.red,
       ),
       backgroundColor: Colors.grey[300],

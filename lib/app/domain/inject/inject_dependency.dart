@@ -1,7 +1,7 @@
 import 'package:desafio_apirest/app/data/datasoucer/auth_interface.dart';
 import 'package:desafio_apirest/app/data/datasoucer/cart_interface.dart';
 import 'package:desafio_apirest/app/data/services/auth/google_auth_service.dart';
-import 'package:desafio_apirest/app/data/services/cart/sqflite_service.dart';
+import 'package:desafio_apirest/app/data/services/cart/sqflite_service/sqflite_service.dart';
 import 'package:desafio_apirest/app/presenter/view/cart/controller_cart/cart_controller.dart';
 import 'package:desafio_apirest/app/presenter/view/list_products/controller_list_products/list_products_controller.dart';
 import 'package:desafio_apirest/app/presenter/view/login/controller_login/login_controller.dart';
