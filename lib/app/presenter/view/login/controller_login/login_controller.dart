@@ -12,8 +12,11 @@ class LoginController extends Cubit<LoginState> {
 
     try {
       await loginImpl.signIn();
+
+      emit(LoginSucesso());
     } catch (e) {
-      emit(LoginError('Erro no login !!'));
+      print('ERRO NO LOGIN: $e');
+      emit(LoginError('Erro ao fazer login !!'));
     }
   }
 
@@ -31,7 +34,7 @@ class LoginController extends Cubit<LoginState> {
         emit(LoginFalhou());
       }
     } catch (e) {
-      emit(LoginError('Erro no login !!'));
+      emit(LoginError('Erro ao checar login !!'));
     }
   }
 

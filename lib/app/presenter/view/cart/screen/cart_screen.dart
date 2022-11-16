@@ -27,6 +27,7 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         actions: [
           TextButton(
             onPressed: () {
@@ -131,7 +132,7 @@ class _CartScreenState extends State<CartScreen> {
                               style: TextStyle(fontSize: 16),
                             ),
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.green[400],
+                              backgroundColor: Colors.green[400],
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 18,
                                 vertical: 12,
