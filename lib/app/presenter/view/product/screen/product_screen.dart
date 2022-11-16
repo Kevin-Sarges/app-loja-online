@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:desafio_apirest/app/data/datasoucer/cart_interface.dart';
 import 'package:desafio_apirest/app/data/model/cart_model.dart';
 import 'package:desafio_apirest/app/data/model/product_model.dart';

@@ -15,7 +15,6 @@ class LoginController extends Cubit<LoginState> {
 
       emit(LoginSucesso());
     } catch (e) {
-      print('ERRO NO LOGIN: $e');
       emit(LoginError('Erro ao fazer login !!'));
     }
   }
