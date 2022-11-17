@@ -33,10 +33,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
-        Future.delayed(
-          const Duration(seconds: 2),
-        );
-
         checkSignedIn(context);
       },
     );

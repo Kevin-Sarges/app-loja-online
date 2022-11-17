@@ -8,13 +8,9 @@ class GoogleAuthService implements IAuthUser {
 
   @override
   Future<User?> isLoggerIn() async {
-    User? userIsLoggerIn;
+    final user = firebaseAuth.currentUser;
 
-    firebaseAuth.authStateChanges().listen((user) {
-      userIsLoggerIn = user;
-    });
-
-    return userIsLoggerIn;
+    return user;
   }
 
   @override
@@ -36,6 +32,6 @@ class GoogleAuthService implements IAuthUser {
 
   @override
   Future<void> signOut() async {
-    await googleSignIn.signOut();
+    await firebaseAuth.signOut();
   }
 }
