@@ -4,6 +4,7 @@ import 'package:desafio_apirest/app/presenter/globals_widgets/circular_progress_
 import 'package:desafio_apirest/app/presenter/view/list_products/controller_list_products/list_products_controller.dart';
 import 'package:desafio_apirest/app/presenter/view/list_products/controller_list_products/list_products_state.dart';
 import 'package:desafio_apirest/app/presenter/view/list_products/widgets_list_products/grid_home_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -18,6 +19,7 @@ class ListProductsScreen extends StatefulWidget {
 class _ListProductsScreenState extends State<ListProductsScreen> {
   final controller = GetIt.I.get<ListProductsController>();
   final loginController = GetIt.I.get<IAuthUser>();
+  final user = FirebaseAuth.instance.currentUser;
 
   @override
   void initState() {
@@ -29,14 +31,20 @@ class _ListProductsScreenState extends State<ListProductsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         title: const Text(
           'Produtos',
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),
+        automaticallyImplyLeading: false,
         actions: [
+          CircleAvatar(
+            backgroundColor: Colors.white30,
+            backgroundImage: NetworkImage(
+              user!.photoURL.toString(),
+            ),
+          ),
           IconButton(
             onPressed: () {
               loginController.signOut();
