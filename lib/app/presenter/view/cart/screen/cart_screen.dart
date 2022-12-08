@@ -1,3 +1,4 @@
+import 'package:desafio_apirest/app/domain/constants/routes_app.dart';
 import 'package:desafio_apirest/app/presenter/globals_widgets/circular_progress_widget.dart';
 import 'package:desafio_apirest/app/presenter/view/cart/widgets_cart/component_prouct_widget.dart';
 import 'package:desafio_apirest/app/presenter/view/cart/controller_cart/cart_controller.dart';
@@ -126,7 +127,9 @@ class _CartScreenState extends State<CartScreen> {
                             ],
                           ),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, RoutesApp.mapRouter);
+                            },
                             child: const Text(
                               'Finalizar compra',
                               style: TextStyle(fontSize: 16),

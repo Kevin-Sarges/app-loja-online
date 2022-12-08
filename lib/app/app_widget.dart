@@ -1,6 +1,7 @@
 import 'package:desafio_apirest/app/domain/constants/routes_app.dart';
 import 'package:desafio_apirest/app/presenter/view/home/screen/home_screen.dart';
 import 'package:desafio_apirest/app/presenter/view/login/screen/login_screen.dart';
+import 'package:desafio_apirest/app/presenter/view/map/screen/map_screen.dart';
 import 'package:desafio_apirest/app/presenter/view/splash/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +21,7 @@ class _MyAppState extends State<MyApp> {
         RoutesApp.initalRouter: (context) => const SplashScreen(),
         RoutesApp.loginRouter: (context) => const LoginScreen(),
         RoutesApp.homeRouter: (context) => const HomeScreen(),
+        RoutesApp.mapRouter: (context) => const MapScreen(),
       },
     );
   }
