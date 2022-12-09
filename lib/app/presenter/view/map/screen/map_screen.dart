@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:desafio_apirest/app/presenter/globals_widgets/circular_progress_widget.dart';
 import 'package:desafio_apirest/app/presenter/view/map/controllers_map/map_controller.dart';
 import 'package:desafio_apirest/app/presenter/view/map/controllers_map/map_state.dart';
